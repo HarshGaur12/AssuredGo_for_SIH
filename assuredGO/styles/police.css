@@ -1,0 +1,12 @@
+#map {
+    height: 400px; 
+    width: 100%;
+}
+#stats-chart {
+    height: 500px; 
+    width: 100%;
+}
+.fas:hover{
+    background-color: #D0E4FF;
+
+}

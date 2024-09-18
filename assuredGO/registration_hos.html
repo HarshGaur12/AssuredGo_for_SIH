@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - Assured Go</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/styles/fir.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #D0E4FF ;">
+        <a class="navbar-brand" href="#" style="color: black;"><i class="fas fa-shield-alt" style="color: black;"></i> Assured Go</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/hospital.html" style="color: black;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#" style="color: black;"><i class="fas fa-file-alt"></i> Generate FIR <span class="sr-only">(current)</span></a>
+                </li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="mb-4"><i class="fas fa-file-alt"></i> Patient Registration </h2>
+        <form id="fir-form">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="complainant-name">Patient's Name</label>
+                    <input type="text" class="form-control" id="complainant-name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="complainant-phone">Patient's Phone</label>
+                    <input type="tel" class="form-control" id="complainant-phone" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="incident-location">Incident Location</label>
+                <input type="text" class="form-control" id="incident-location" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="incident-date">Incident Date</label>
+                    <input type="date" class="form-control" id="incident-date" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="incident-time">Reporting Time</label>
+                    <input type="time" class="form-control" id="incident-time" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="incident-type">Select Police Station</label>
+                <select class="form-control" id="incident-type" required>
+                    <option value="">Select Incident Type</option>
+                    <option value="theft">abc</option>
+                    <option value="assault">def</option>
+                    <option value="accident">ghi</option>
+                    <option value="other">jkl</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="incident-description">Incident Description</label>
+                <textarea class="form-control" id="incident-description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="witnesses">Witnesses (if any)</label>
+                <input type="text" class="form-control" id="witnesses">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1775F1;"><i class="fas fa-save"></i> Submit Patient Details</button>
+        </form>
+    </div>
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Report Generated Successfully</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Your Report has been successfully generated with the following details:</p>
+                    <p><strong>Report Number:</strong> <span id="fir-number"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="goto-dashboard">Go to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/scripts/registration_hos.js"></script>
+</body>
+</html>

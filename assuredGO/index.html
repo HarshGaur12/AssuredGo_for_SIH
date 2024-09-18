@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Emergency Response System</title>
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+<body>
+    <div class="container login-container">
+        <a href="./assets/logo.png">
+            <img src="./assets/login_logo.png" alt="Logo" style="height: 80px; width: auto; margin-left: 70px;margin-bottom:25px;">
+        </a>
+        <form id="loginForm" class="login-form">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5001/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, Password: password }),
+                    credentials: 'include' // Ensures the cookie is sent with the request
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Save the token to localStorage (if needed for future requests)
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('BranchName', data.BranchName);
+                    localStorage.setItem('organizationType', data.organizationType);
+
+                    // Redirect based on organizationType
+                    if (data.organizationType === 'Police') {
+                        console.log("Here");
+                        window.location.href = './police.html';
+                    } else if (data.organizationType === 'Hospital') {
+                        window.location.href = './hospital.html';
+                    }
+                } else {
+                    alert('Login failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
